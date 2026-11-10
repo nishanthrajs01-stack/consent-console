@@ -40,7 +40,19 @@ If an AI purchasing agent falls victim to an **Indirect Prompt Injection** (e.g.
 
 ---
 
-## 3. Security Framework Alignment (OWASP 2026)
+## 3. Dedicated Navigation Pages
+
+The application is structured into 5 dedicated pages adhering to the reference design system:
+
+- **[Dashboard (`/`)](http://localhost:3000/)**: Executive spend meters, active category locks, live 4-entry activity feed, and the centerpiece glowing **Attack Detected & Blocked!** incident card.
+- **[Settings (`/settings`)](http://localhost:3000/settings)**: Spend limit threshold controls, quick presets (₹5,000, ₹25,000, ₹100,000), PayPal Sandbox handshake status, audit sensitivity switcher, and demo data reset.
+- **[Policies (`/policies`)](http://localhost:3000/policies)**: Interactive category allowlist editor with add/remove tags, ceiling rule details, and OWASP Least Agency tool scoping indicators.
+- **[Activity Logs (`/activity`)](http://localhost:3000/activity)**: Comprehensive searchable and filterable chronological audit trail with raw extracted injection snippets and 1-click JSON export.
+- **[About (`/about`)](http://localhost:3000/about)**: Hackathon problem statement, architectural principles (`Code > LLM`), and OWASP Top 10 2026 security mappings.
+
+---
+
+## 4. Security Framework Alignment (OWASP 2026)
 
 ### OWASP Top 10 for LLM Applications (2026)
 - **LLM03 Excessive Agency (#3 in 2026, up from #6)**: *"Excessive agency is the control deciding whether an injection is an inconvenience or an incident."* Consent Console enforces least privilege: only `orders: { create, get, capture }` are exposed, and each call must pass independent server-side verification before touching PayPal.
@@ -54,92 +66,77 @@ If an AI purchasing agent falls victim to an **Indirect Prompt Injection** (e.g.
 
 ---
 
-## 4. The Attack Demo Centerpiece
+## 5. Security & Functionality Audit Results
 
-Consent Console demonstrates a live, reproducible attack scenario:
-1. **Authorized Purchase**: The agent orders legitimate *Recycled Gel Ink Pens* ($14.99). The policy gate verifies that the price is under the $50 spend cap and matches the *Office Supplies* category. PayPal Sandbox executes `orders.create`, and a green verified entry appears in the live audit feed.
-2. **Indirect Prompt Injection**: A poisoned catalog item (*Executive Desk Pad*) embeds a hidden system override directive instructing the agent to order 25 units of *$2,400 Enterprise GPU Cluster Tokens*.
-3. **Deterministic Block**: The policy gate intercepts the tool call on two independent grounds (**Spend cap exceeded** + **Category mismatch** + **Injection signature detected**) before any PayPal API call fires.
-4. **Real-time Alert**: A red alert displays immediately in the live feed with the raw extracted attack payload for human audit.
-5. **Kill Switch**: A persistent, one-tap emergency kill switch instantly halts all autonomous purchasing.
+Run the automated audit script:
+```bash
+node scripts/audit.mjs
+```
+
+```
+======================================================
+       CONSENT CONSOLE — SYSTEM AUDIT REPORT          
+======================================================
+
+[1/4] AUDITING APPLICATION ROUTES...
+  ✓ Route / -> 200 OK
+  ✓ Route /settings -> 200 OK
+  ✓ Route /policies -> 200 OK
+  ✓ Route /activity -> 200 OK
+  ✓ Route /about -> 200 OK
+
+[2/4] AUDITING API ENDPOINTS...
+  ✓ API /api/catalog -> 4 items loaded
+  ✓ API /api/policy/config GET -> Spend Cap: ₹5,000
+  ✓ API /api/events GET -> 4 events retrieved
+
+[3/4] AUDITING SECURITY CONTROLS (OWASP TOP 10 2026)...
+  ✓ Authorized Purchase: Approved -> Status: PASSED
+  ✓ Attack Interception: Blocked -> Caught 2 violations:
+      - Exceeds daily limit (₹2,49,990 > ₹5,000)
+      - Suspicious prompt injection
+  ✓ Master Safety Pause: Successfully prevented purchase when engaged
+
+[4/4] AUDIT SUMMARY
+  Total Checks: 11
+  Passed: 11
+  Failed: 0
+  Overall Compliance Score: 100%
+
+✓ ALL SECURITY & FUNCTIONALITY CRITERIA VERIFIED
+```
 
 ---
 
-## 5. Getting Started
+## 6. Getting Started
 
 ### Prerequisites
 - Node.js 18+ (tested on Node v24 LTS)
 - npm or pnpm
-- (Optional) PayPal Developer Sandbox account (`PAYPAL_CLIENT_ID`, `PAYPAL_CLIENT_SECRET`)
-- (Optional) Google Gemini API Key or OpenAI API Key
 
 ### Installation
 
-1. Clone the repository:
+1. Clone and install dependencies:
    ```bash
    git clone https://github.com/<your-username>/consent-console.git
    cd consent-console
-   ```
-
-2. Install dependencies:
-   ```bash
    npm install
    ```
 
-3. Configure environment variables (create `.env.local`):
+2. Run development or production server:
    ```bash
-   cp .env.example .env.local
-   ```
-   Add your credentials:
-   ```env
-   PAYPAL_CLIENT_ID=your_paypal_sandbox_client_id
-   PAYPAL_CLIENT_SECRET=your_paypal_sandbox_client_secret
-   GEMINI_API_KEY=your_gemini_api_key
-   ```
-   *(Note: The application includes instant deterministic simulation mode, allowing the full demo to run immediately even before sandbox keys are added).*
-
-4. Run the development server:
-   ```bash
+   # Development
    npm run dev
+
+   # Or Production (Pre-compiled)
+   npm run build
+   npm run start
    ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+3. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## 6. Project Structure
+## 7. License
 
-```
-├── src/
-│   ├── app/
-│   │   ├── api/
-│   │   │   ├── agent/run/      # Autonomous purchasing agent orchestrator
-│   │   │   ├── catalog/        # Simulated catalog with poisoned items
-│   │   │   ├── events/         # Server-Sent Events (SSE) real-time feed
-│   │   │   └── policy/config/  # Spend cap & kill-switch configuration
-│   │   ├── globals.css         # Dark fintech design system
-│   │   ├── layout.tsx          # Root layout
-│   │   └── page.tsx            # Screen 1 (Setup) & Screen 2 (Live Console)
-│   ├── lib/
-│   │   ├── activity-store.ts   # In-memory thread-safe event bus & SSE broker
-│   │   ├── agent.ts            # AI purchasing agent (Gemini / OpenAI / Scripted)
-│   │   ├── catalog.ts          # Normal & poisoned indirect prompt injection items
-│   │   ├── paypal.ts           # PayPalAgentToolkit initialization (Sandbox only)
-│   │   └── policy-gate.ts      # Deterministic Policy Gate (The 60 lines that matter)
-│   └── types/
-│       └── consent.ts          # Policy and event type definitions
-├── .env.example
-├── LICENSE                     # MIT License
-├── package.json
-└── README.md
-```
-
----
-
-## 7. Compliance Checklist
-
-- [x] **PayPal Sandbox Only**: `context: { sandbox: true }` set everywhere. No real money can move.
-- [x] **PayPal Integration Central**: Direct wrapper and gatekeeper for `@paypal/agent-toolkit/ai-sdk`.
-- [x] **AI Meaningfully Incorporated**: Purchasing agent uses LLM tool-calling; transactions explained in plain English.
-- [x] **Working Prototype**: Hosted, runnable Next.js application (no static mockups).
-- [x] **License**: Open-source under MIT License.
+Open-source under the [MIT License](LICENSE).

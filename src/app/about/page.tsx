@@ -18,51 +18,51 @@ import {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#080D1F] text-[#F5F7FA] font-sans flex antialiased selection:bg-[#2E7CF6] selection:text-white">
+    <div className="min-h-screen bg-[#080D1F] text-[#F5F7FA] font-sans flex flex-col lg:flex-row antialiased selection:bg-[#2E7CF6] selection:text-white overflow-x-hidden">
       <Sidebar />
 
       <div className="flex-1 min-w-0 canvas-glow flex flex-col overflow-y-auto">
         <TopBar />
 
-        <main className="px-8 py-6 max-w-5xl space-y-6">
+        <main className="px-4 sm:px-6 lg:px-8 py-6 max-w-5xl space-y-6 w-full">
           {/* Header */}
           <div className="space-y-1">
             <div className="flex items-center space-x-2 text-xs font-semibold text-[#2E7CF6] uppercase tracking-wider">
               <Info className="w-4 h-4" />
               <span>Project Mission & Architecture</span>
             </div>
-            <h1 className="text-3xl font-extrabold text-white tracking-tight">About Consent Console</h1>
-            <p className="text-sm text-[#94A3B8]">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">About Consent Console</h1>
+            <p className="text-xs sm:text-sm text-[#94A3B8]">
               The human trust and deterministic policy layer built for the PayPal AI Hackathon 2026.
             </p>
           </div>
 
           {/* SECTION 1: THE CORE PROBLEM */}
-          <div className="surface-card p-6 space-y-3">
-            <h2 className="text-lg font-bold text-white tracking-tight flex items-center space-x-2">
+          <div className="surface-card p-4 sm:p-6 space-y-3">
+            <h2 className="text-base sm:text-lg font-bold text-white tracking-tight flex items-center space-x-2">
               <span className="text-[#2E7CF6]">01.</span>
               <span>The Gap in PayPal&apos;s Agent Toolkit</span>
             </h2>
-            <p className="text-sm text-[#94A3B8] leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
               PayPal&apos;s Agent Toolkit and hosted MCP server allow autonomous LLMs to create orders, initiate checkouts, and capture payments.
               However, the toolkit ships with <strong className="text-white">no automatic human-confirmation gate before tool calls</strong> — approval logic is left entirely to the integrator.
             </p>
-            <p className="text-sm text-[#94A3B8] leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
               When an autonomous purchasing agent encounters an untrusted product description or supplier listing containing an <strong className="text-white">indirect prompt injection</strong>, it can be manipulated into placing unapproved bulk orders or buying prohibited items.
             </p>
           </div>
 
           {/* SECTION 2: THE ARCHITECTURAL PRINCIPLE */}
-          <div className="surface-card p-6 space-y-4">
-            <h2 className="text-lg font-bold text-white tracking-tight flex items-center space-x-2">
+          <div className="surface-card p-4 sm:p-6 space-y-4">
+            <h2 className="text-base sm:text-lg font-bold text-white tracking-tight flex items-center space-x-2">
               <span className="text-[#2E7CF6]">02.</span>
               <span>Core Design Principle: Code &gt; LLM</span>
             </h2>
-            <p className="text-sm text-[#94A3B8] leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
               The policy gate is <strong className="text-white">deterministic TypeScript code, not another LLM call</strong>. Never ask an AI &quot;was that purchase okay?&quot; — that trusts the very entity you are policing. Spend caps, category allowlists, and prompt injection signatures are plain <code className="text-[#2E7CF6] font-mono">if</code> statements evaluated independently of the agent&apos;s reasoning.
             </p>
 
-            <div className="bg-black/40 border border-white/[0.08] p-4 rounded-xl font-mono text-xs text-slate-300 leading-relaxed overflow-x-auto">
+            <div className="bg-black/40 border border-white/[0.08] p-4 rounded-xl font-mono text-xs text-slate-300 leading-relaxed overflow-x-auto whitespace-pre sm:whitespace-normal">
               <div>Agent (LLM) decides WHAT to buy</div>
               <div className="text-[#2E7CF6]">  └──&gt; Calls wrapped orders.create</div>
               <div className="text-[#F5A623]">        └──&gt; Consent Console Policy Gate (Deterministic Checks)</div>
@@ -72,8 +72,8 @@ export default function AboutPage() {
           </div>
 
           {/* SECTION 3: OWASP FRAMEWORK ALIGNMENT */}
-          <div className="surface-card p-6 space-y-4">
-            <h2 className="text-lg font-bold text-white tracking-tight flex items-center space-x-2">
+          <div className="surface-card p-4 sm:p-6 space-y-4">
+            <h2 className="text-base sm:text-lg font-bold text-white tracking-tight flex items-center space-x-2">
               <span className="text-[#2E7CF6]">03.</span>
               <span>OWASP Top 10 (2026) Security Mapping</span>
             </h2>
@@ -102,8 +102,8 @@ export default function AboutPage() {
           </div>
 
           {/* SECTION 4: HACKATHON COMPLIANCE BADGES */}
-          <div className="surface-card p-6 space-y-3">
-            <h2 className="text-lg font-bold text-white tracking-tight flex items-center space-x-2">
+          <div className="surface-card p-4 sm:p-6 space-y-3">
+            <h2 className="text-base sm:text-lg font-bold text-white tracking-tight flex items-center space-x-2">
               <span className="text-[#2E7CF6]">04.</span>
               <span>Hackathon Compliance Checklist</span>
             </h2>

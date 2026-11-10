@@ -6,17 +6,13 @@ import TopBar from '@/components/TopBar';
 import TrustStrip from '@/components/TrustStrip';
 import {
   Shield,
-  ShieldCheck,
   Tag,
   DollarSign,
   Lock,
-  Cpu,
-  CheckCircle2,
   Plus,
   Trash2,
   Save,
-  Sliders,
-  AlertTriangle,
+  ShieldCheck,
 } from 'lucide-react';
 import { PolicyConfig } from '@/types/consent';
 
@@ -77,21 +73,21 @@ export default function PoliciesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#080D1F] text-[#F5F7FA] font-sans flex antialiased selection:bg-[#2E7CF6] selection:text-white">
+    <div className="min-h-screen bg-[#080D1F] text-[#F5F7FA] font-sans flex flex-col lg:flex-row antialiased selection:bg-[#2E7CF6] selection:text-white overflow-x-hidden">
       <Sidebar />
 
       <div className="flex-1 min-w-0 canvas-glow flex flex-col overflow-y-auto">
         <TopBar />
 
-        <main className="px-8 py-6 max-w-5xl space-y-6">
+        <main className="px-4 sm:px-6 lg:px-8 py-6 max-w-5xl space-y-6 w-full">
           {/* Header */}
           <div className="space-y-1">
             <div className="flex items-center space-x-2 text-xs font-semibold text-[#2E7CF6] uppercase tracking-wider">
               <Shield className="w-4 h-4" />
-              <span>Guardrails & Authorization</span>
+              <span>Guardrails &amp; Authorization</span>
             </div>
-            <h1 className="text-3xl font-extrabold text-white tracking-tight">Active Policy Engine</h1>
-            <p className="text-sm text-[#94A3B8]">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Active Policy Engine</h1>
+            <p className="text-xs sm:text-sm text-[#94A3B8]">
               Deterministic non-LLM checks evaluated server-side before any PayPal tool execution.
             </p>
           </div>
@@ -99,15 +95,15 @@ export default function PoliciesPage() {
           {/* ACTIVE RULE CARDS */}
           <div className="space-y-4">
             {/* Rule 1: Category Allowlist */}
-            <div className="surface-card p-6 space-y-4">
-              <div className="flex items-start justify-between">
+            <div className="surface-card p-4 sm:p-6 space-y-4">
+              <div className="flex items-start justify-between gap-3">
                 <div className="flex items-start space-x-3.5">
                   <div className="w-9 h-9 rounded-xl bg-[#2E7CF6]/15 text-[#2E7CF6] flex items-center justify-center shrink-0">
                     <Tag className="w-5 h-5" />
                   </div>
                   <div>
                     <div className="flex items-center space-x-2">
-                      <h2 className="text-base font-bold text-white">Rule 1: Category Lock (Allowlist)</h2>
+                      <h2 className="text-sm sm:text-base font-bold text-white">Rule 1: Category Lock (Allowlist)</h2>
                       <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#22C55E]/15 text-[#22C55E]">
                         Active
                       </span>
@@ -118,7 +114,7 @@ export default function PoliciesPage() {
                   </div>
                 </div>
 
-                <span className="text-xs font-mono text-slate-400">OWASP ASI03</span>
+                <span className="text-[11px] font-mono text-slate-400 shrink-0">OWASP ASI03</span>
               </div>
 
               {/* Category Pills & Manager */}
@@ -153,7 +149,7 @@ export default function PoliciesPage() {
                   />
                   <button
                     onClick={addCategory}
-                    className="px-3 py-1.5 bg-white/[0.08] hover:bg-white/[0.14] text-white rounded-xl text-xs font-medium flex items-center space-x-1"
+                    className="px-3 py-1.5 bg-white/[0.08] hover:bg-white/[0.14] text-white rounded-xl text-xs font-medium flex items-center space-x-1 shrink-0"
                   >
                     <Plus className="w-3.5 h-3.5" />
                     <span>Add</span>
@@ -163,15 +159,15 @@ export default function PoliciesPage() {
             </div>
 
             {/* Rule 2: Daily Spend Cap */}
-            <div className="surface-card p-6 space-y-3">
-              <div className="flex items-start justify-between">
+            <div className="surface-card p-4 sm:p-6 space-y-3">
+              <div className="flex items-start justify-between gap-3">
                 <div className="flex items-start space-x-3.5">
                   <div className="w-9 h-9 rounded-xl bg-[#22C55E]/15 text-[#22C55E] flex items-center justify-center shrink-0">
                     <DollarSign className="w-5 h-5" />
                   </div>
                   <div>
                     <div className="flex items-center space-x-2">
-                      <h2 className="text-base font-bold text-white">Rule 2: Spend Ceiling</h2>
+                      <h2 className="text-sm sm:text-base font-bold text-white">Rule 2: Spend Ceiling</h2>
                       <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#22C55E]/15 text-[#22C55E]">
                         Active
                       </span>
@@ -182,29 +178,29 @@ export default function PoliciesPage() {
                   </div>
                 </div>
 
-                <span className="text-xs font-mono text-slate-400">OWASP LLM06</span>
+                <span className="text-[11px] font-mono text-slate-400 shrink-0">OWASP LLM06</span>
               </div>
 
-              <div className="flex items-center space-x-3 text-xs pt-1">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs pt-1">
                 <span className="text-slate-400">Current Threshold:</span>
                 <span className="text-white font-mono font-bold bg-white/[0.04] border border-white/[0.1] px-2.5 py-1 rounded-lg">
                   ₹{policy.dailySpendCap.toLocaleString('en-IN')} / Day
                 </span>
-                <span className="text-[#5B6B87]">•</span>
+                <span className="text-[#5B6B87] hidden sm:inline">•</span>
                 <span className="text-[#22C55E]">Resets every 24 hours</span>
               </div>
             </div>
 
             {/* Rule 3: Indirect Prompt Injection Scanner */}
-            <div className="surface-card p-6 space-y-3">
-              <div className="flex items-start justify-between">
+            <div className="surface-card p-4 sm:p-6 space-y-3">
+              <div className="flex items-start justify-between gap-3">
                 <div className="flex items-start space-x-3.5">
                   <div className="w-9 h-9 rounded-xl bg-[#EF4444]/15 text-[#EF4444] flex items-center justify-center shrink-0">
                     <ShieldCheck className="w-5 h-5" />
                   </div>
                   <div>
                     <div className="flex items-center space-x-2">
-                      <h2 className="text-base font-bold text-white">Rule 3: Prompt Injection & Goal Hijack Filter</h2>
+                      <h2 className="text-sm sm:text-base font-bold text-white">Rule 3: Prompt Injection Filter</h2>
                       <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#22C55E]/15 text-[#22C55E]">
                         Active
                       </span>
@@ -215,27 +211,25 @@ export default function PoliciesPage() {
                   </div>
                 </div>
 
-                <span className="text-xs font-mono text-slate-400">OWASP LLM01 & ASI01</span>
+                <span className="text-[11px] font-mono text-slate-400 shrink-0">OWASP LLM01</span>
               </div>
 
-              <div className="text-xs text-[#94A3B8] bg-black/30 border border-white/[0.08] p-3 rounded-xl font-mono leading-relaxed">
+              <div className="text-xs text-[#94A3B8] bg-black/30 border border-white/[0.08] p-3 rounded-xl font-mono leading-relaxed overflow-x-auto">
                 <span className="text-slate-400 font-bold block mb-1">Protected Pattern Classes:</span>
-                <code>/ignore (all|prior|previous) (instructions|restrictions|rules)/i</code>,{' '}
-                <code>/system (directive|note|instruction|override)/i</code>,{' '}
-                <code>/share your account credentials/i</code>
+                <code>/ignore (all|prior) instructions/i</code>, <code>/system directive/i</code>, <code>/share your account credentials/i</code>
               </div>
             </div>
 
             {/* Rule 4: Least Agency Tool Scope */}
-            <div className="surface-card p-6 space-y-3">
-              <div className="flex items-start justify-between">
+            <div className="surface-card p-4 sm:p-6 space-y-3">
+              <div className="flex items-start justify-between gap-3">
                 <div className="flex items-start space-x-3.5">
                   <div className="w-9 h-9 rounded-xl bg-purple-500/15 text-purple-400 flex items-center justify-center shrink-0">
                     <Lock className="w-5 h-5" />
                   </div>
                   <div>
                     <div className="flex items-center space-x-2">
-                      <h2 className="text-base font-bold text-white">Rule 4: Least Agency Tool Scoping</h2>
+                      <h2 className="text-sm sm:text-base font-bold text-white">Rule 4: Least Agency Tool Scope</h2>
                       <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#22C55E]/15 text-[#22C55E]">
                         Active
                       </span>
@@ -246,10 +240,10 @@ export default function PoliciesPage() {
                   </div>
                 </div>
 
-                <span className="text-xs font-mono text-slate-400">OWASP LLM03 (#3 in 2026)</span>
+                <span className="text-[11px] font-mono text-slate-400 shrink-0">OWASP LLM03</span>
               </div>
 
-              <div className="flex items-center space-x-2 text-xs font-mono pt-1">
+              <div className="flex flex-wrap items-center gap-2 text-xs font-mono pt-1">
                 <span className="px-2.5 py-1 rounded-lg bg-[#22C55E]/15 text-[#22C55E] border border-[#22C55E]/30">
                   orders.create (Exposed)
                 </span>
@@ -269,7 +263,7 @@ export default function PoliciesPage() {
           {/* SAVE BUTTON */}
           <div className="flex items-center justify-between pt-2">
             <span className="text-xs text-[#94A3B8]">
-              {isSaved ? <span className="text-[#22C55E] font-semibold">Policies saved successfully!</span> : 'Changes take effect immediately on next tool execution.'}
+              {isSaved ? <span className="text-[#22C55E] font-semibold">Policies saved successfully!</span> : 'Changes take effect immediately.'}
             </span>
 
             <button
@@ -281,7 +275,7 @@ export default function PoliciesPage() {
             </button>
           </div>
 
-          <div className="pt-6">
+          <div className="pt-4">
             <TrustStrip />
           </div>
         </main>

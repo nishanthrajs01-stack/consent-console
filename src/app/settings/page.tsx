@@ -6,16 +6,11 @@ import TopBar from '@/components/TopBar';
 import TrustStrip from '@/components/TrustStrip';
 import {
   Settings,
-  DollarSign,
-  Shield,
-  Bell,
   Power,
   RotateCcw,
   CheckCircle2,
   Lock,
-  ExternalLink,
-  Cpu,
-  Key,
+  Bell,
   Save,
 } from 'lucide-react';
 import { PolicyConfig } from '@/types/consent';
@@ -72,31 +67,31 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#080D1F] text-[#F5F7FA] font-sans flex antialiased selection:bg-[#2E7CF6] selection:text-white">
+    <div className="min-h-screen bg-[#080D1F] text-[#F5F7FA] font-sans flex flex-col lg:flex-row antialiased selection:bg-[#2E7CF6] selection:text-white overflow-x-hidden">
       <Sidebar />
 
       <div className="flex-1 min-w-0 canvas-glow flex flex-col overflow-y-auto">
         <TopBar />
 
-        <main className="px-8 py-6 max-w-5xl space-y-6">
+        <main className="px-4 sm:px-6 lg:px-8 py-6 max-w-5xl space-y-6 w-full">
           {/* Header */}
           <div className="space-y-1">
             <div className="flex items-center space-x-2 text-xs font-semibold text-[#2E7CF6] uppercase tracking-wider">
               <Settings className="w-4 h-4" />
               <span>System Configuration</span>
             </div>
-            <h1 className="text-3xl font-extrabold text-white tracking-tight">Console Settings</h1>
-            <p className="text-sm text-[#94A3B8]">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Console Settings</h1>
+            <p className="text-xs sm:text-sm text-[#94A3B8]">
               Manage autonomous agent procurement parameters, spend safeguards, and integration credentials.
             </p>
           </div>
 
-          <form onSubmit={handleSave} className="space-y-6">
+          <form onSubmit={handleSave} className="space-y-5">
             {/* SECTION 1: MASTER SAFETY CONTROLS */}
-            <div className="surface-card p-6 space-y-5">
-              <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
+            <div className="surface-card p-4 sm:p-6 space-y-4 sm:space-y-5">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-white/[0.08] gap-3">
                 <div className="space-y-0.5">
-                  <h2 className="text-base font-bold text-white flex items-center space-x-2">
+                  <h2 className="text-sm sm:text-base font-bold text-white flex items-center space-x-2">
                     <Power className="w-4 h-4 text-rose-400" />
                     <span>Emergency Safety Pause (Kill Switch)</span>
                   </h2>
@@ -108,19 +103,19 @@ export default function SettingsPage() {
                 <button
                   type="button"
                   onClick={() => setPolicy({ ...policy, killSwitchActive: !policy.killSwitchActive })}
-                  className={`px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md flex items-center space-x-2 ${
+                  className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md flex items-center justify-center space-x-2 self-start sm:self-auto shrink-0 ${
                     policy.killSwitchActive
                       ? 'bg-rose-600 text-white animate-pulse'
                       : 'bg-white/[0.08] text-slate-300 hover:text-white border border-white/[0.1]'
                   }`}
                 >
                   <Power className="w-3.5 h-3.5" />
-                  <span>{policy.killSwitchActive ? 'PAUSED (Tool Calling Frozen)' : 'ACTIVE (Normal Operation)'}</span>
+                  <span>{policy.killSwitchActive ? 'PAUSED (Frozen)' : 'ACTIVE (Normal)'}</span>
                 </button>
               </div>
 
               {/* Spend Limits */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 pt-1">
                 <div className="space-y-2">
                   <label className="block text-xs font-semibold text-slate-200">
                     Daily Spend Allowance (INR)
@@ -167,10 +162,10 @@ export default function SettingsPage() {
             </div>
 
             {/* SECTION 2: PAYPAL SANDBOX ENVIRONMENT */}
-            <div className="surface-card p-6 space-y-4">
+            <div className="surface-card p-4 sm:p-6 space-y-4">
               <div className="pb-3 border-b border-white/[0.08] flex items-center justify-between">
                 <div>
-                  <h2 className="text-base font-bold text-white flex items-center space-x-2">
+                  <h2 className="text-sm sm:text-base font-bold text-white flex items-center space-x-2">
                     <Lock className="w-4 h-4 text-[#2E7CF6]" />
                     <span>PayPal Sandbox Handshake</span>
                   </h2>
@@ -181,34 +176,34 @@ export default function SettingsPage() {
                 </span>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
-                <div className="bg-black/30 border border-white/[0.08] rounded-xl p-3.5 space-y-1">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
+                <div className="bg-black/30 border border-white/[0.08] rounded-xl p-3 space-y-1">
                   <span className="text-[#94A3B8] text-[10px] uppercase font-bold block">Target API Host</span>
-                  <span className="text-white">api-m.sandbox.paypal.com</span>
+                  <span className="text-white truncate block">api-m.sandbox.paypal.com</span>
                 </div>
 
-                <div className="bg-black/30 border border-white/[0.08] rounded-xl p-3.5 space-y-1">
+                <div className="bg-black/30 border border-white/[0.08] rounded-xl p-3 space-y-1">
                   <span className="text-[#94A3B8] text-[10px] uppercase font-bold block">Context Flag</span>
-                  <span className="text-[#22C55E]">sandbox: true (Enforced Globally)</span>
+                  <span className="text-[#22C55E] truncate block">sandbox: true (Enforced)</span>
                 </div>
               </div>
             </div>
 
             {/* SECTION 3: AUDIT STREAM SENSITIVITY */}
-            <div className="surface-card p-6 space-y-4">
+            <div className="surface-card p-4 sm:p-6 space-y-4">
               <div className="pb-3 border-b border-white/[0.08]">
-                <h2 className="text-base font-bold text-white flex items-center space-x-2">
+                <h2 className="text-sm sm:text-base font-bold text-white flex items-center space-x-2">
                   <Bell className="w-4 h-4 text-[#F5A623]" />
                   <span>Audit Stream Sensitivity</span>
                 </h2>
                 <p className="text-xs text-[#94A3B8]">Choose how granularly events stream into the live activity log.</p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <button
                   type="button"
                   onClick={() => setPolicy({ ...policy, alertSensitivity: 'standard' })}
-                  className={`p-4 rounded-xl border text-left transition-all ${
+                  className={`p-3.5 sm:p-4 rounded-xl border text-left transition-all ${
                     policy.alertSensitivity === 'standard'
                       ? 'bg-[#2E7CF6]/15 border-[#2E7CF6] text-white shadow'
                       : 'bg-white/[0.03] border-white/[0.08] text-[#94A3B8] hover:bg-white/[0.06]'
@@ -223,7 +218,7 @@ export default function SettingsPage() {
                 <button
                   type="button"
                   onClick={() => setPolicy({ ...policy, alertSensitivity: 'strict' })}
-                  className={`p-4 rounded-xl border text-left transition-all ${
+                  className={`p-3.5 sm:p-4 rounded-xl border text-left transition-all ${
                     policy.alertSensitivity === 'strict'
                       ? 'bg-[#2E7CF6]/15 border-[#2E7CF6] text-white shadow'
                       : 'bg-white/[0.03] border-white/[0.08] text-[#94A3B8] hover:bg-white/[0.06]'
@@ -238,17 +233,17 @@ export default function SettingsPage() {
             </div>
 
             {/* ACTIONS FOOTER */}
-            <div className="flex items-center justify-between pt-2">
+            <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-2">
               <button
                 type="button"
                 onClick={handleResetData}
-                className="px-4 py-2.5 rounded-xl border border-white/[0.1] text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/[0.06] flex items-center space-x-2 transition-all"
+                className="px-4 py-2.5 rounded-xl border border-white/[0.1] text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/[0.06] flex items-center justify-center space-x-2 transition-all"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Reset Demo State</span>
               </button>
 
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-3 justify-end">
                 {savedSuccess && (
                   <span className="text-xs text-[#22C55E] font-medium flex items-center space-x-1">
                     <CheckCircle2 className="w-3.5 h-3.5" />
@@ -259,7 +254,7 @@ export default function SettingsPage() {
                 <button
                   type="submit"
                   disabled={isSaving}
-                  className="px-6 py-2.5 rounded-xl bg-[#2E7CF6] hover:bg-[#1D63D8] text-white text-xs font-semibold shadow-lg shadow-[#2E7CF6]/25 transition-all flex items-center space-x-2"
+                  className="px-6 py-2.5 rounded-xl bg-[#2E7CF6] hover:bg-[#1D63D8] text-white text-xs font-semibold shadow-lg shadow-[#2E7CF6]/25 transition-all flex items-center justify-center space-x-2"
                 >
                   <Save className="w-3.5 h-3.5" />
                   <span>{isSaving ? 'Saving...' : 'Save Configuration'}</span>
@@ -268,7 +263,7 @@ export default function SettingsPage() {
             </div>
           </form>
 
-          <div className="pt-6">
+          <div className="pt-4">
             <TrustStrip />
           </div>
         </main>

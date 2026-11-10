@@ -162,33 +162,33 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#080D1F] text-[#F5F7FA] font-sans flex antialiased selection:bg-[#2E7CF6] selection:text-white">
+    <div className="min-h-screen bg-[#080D1F] text-[#F5F7FA] font-sans flex flex-col lg:flex-row antialiased selection:bg-[#2E7CF6] selection:text-white overflow-x-hidden">
       <Sidebar />
 
       <div className="flex-1 min-w-0 canvas-glow flex flex-col overflow-y-auto">
         <TopBar />
 
-        {/* HERO SECTION */}
-        <section className="px-8 pt-4 pb-6 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative">
-          <div className="max-w-2xl space-y-3">
-            <h1 className="text-5xl font-extrabold tracking-tight">
+        {/* HERO SECTION (Responsive padding and flex layout) */}
+        <section className="px-4 sm:px-6 lg:px-8 pt-4 pb-6 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative">
+          <div className="max-w-2xl space-y-3 w-full">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
               <span className="text-white">Consent </span>
               <span className="bg-gradient-to-r from-[#2E7CF6] to-[#60A5FA] bg-clip-text text-transparent">Console</span>
             </h1>
 
-            <p className="text-xl font-bold text-white tracking-tight">
+            <p className="text-base sm:text-lg lg:text-xl font-bold text-white tracking-tight leading-snug">
               The human trust layer for AI purchases.
             </p>
 
-            <p className="text-sm text-[#94A3B8] max-w-xl leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#94A3B8] max-w-xl leading-relaxed">
               Set limits. Block risks. Stay in control — even when AI shops for you.
             </p>
 
-            {/* CTAs */}
-            <div className="flex items-center space-x-3.5 pt-2">
+            {/* CTAs (Stack full width on small screens, row on sm+) */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2.5 sm:space-y-0 sm:space-x-3.5 pt-2">
               <button
                 onClick={() => setShowDemoModal(true)}
-                className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#2E7CF6] to-[#1D63D8] hover:from-[#256ee0] hover:to-[#1752b5] text-white text-sm font-semibold flex items-center space-x-2 shadow-lg shadow-[#2E7CF6]/25 transition-all"
+                className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#2E7CF6] to-[#1D63D8] hover:from-[#256ee0] hover:to-[#1752b5] text-white text-sm font-semibold flex items-center justify-center space-x-2 shadow-lg shadow-[#2E7CF6]/25 transition-all"
               >
                 <Play className="w-3.5 h-3.5 fill-white" />
                 <span>View Demo</span>
@@ -198,9 +198,9 @@ export default function DashboardPage() {
                 href="https://github.com"
                 target="_blank"
                 rel="noreferrer"
-                className="px-4 py-2.5 rounded-xl border border-white/[0.14] hover:border-white/30 text-white text-sm font-medium flex items-center space-x-2 transition-all hover:bg-white/[0.04]"
+                className="px-4 py-2.5 rounded-xl border border-white/[0.14] hover:border-white/30 text-white text-sm font-medium flex items-center justify-center space-x-2 transition-all hover:bg-white/[0.04]"
               >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
                   <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
                 </svg>
                 <span>View on GitHub</span>
@@ -209,14 +209,14 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* Right Hero Graphic: 3D PayPal Floating Tile with Orbit Rings */}
-          <div className="relative flex items-center justify-center pr-6">
-            <div className="relative w-52 h-44 flex items-center justify-center">
+          {/* Right Hero Graphic: 3D PayPal Floating Tile */}
+          <div className="relative flex items-center justify-center self-center lg:self-auto py-2 lg:py-0 pr-0 lg:pr-6">
+            <div className="relative w-44 h-36 sm:w-52 sm:h-44 flex items-center justify-center">
               <div className="absolute inset-0 rounded-full border border-[#2E7CF6]/60 rotate-45 scale-y-50 pointer-events-none shadow-[0_0_20px_rgba(46,124,246,0.3)] animate-pulse" />
               <div className="absolute inset-0 rounded-full border border-blue-400/40 -rotate-12 scale-x-90 scale-y-50 pointer-events-none" />
 
-              <div className="w-28 h-28 rounded-2xl bg-gradient-to-tr from-[#101c44] to-[#1d3885] border border-blue-400/40 shadow-2xl flex items-center justify-center transform -rotate-12 hover:rotate-0 transition-transform duration-500">
-                <svg className="w-14 h-14 drop-shadow-[0_4px_12px_rgba(46,124,246,0.8)]" viewBox="0 0 32 32" fill="none">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-tr from-[#101c44] to-[#1d3885] border border-blue-400/40 shadow-2xl flex items-center justify-center transform -rotate-12 hover:rotate-0 transition-transform duration-500">
+                <svg className="w-12 h-12 sm:w-14 sm:h-14 drop-shadow-[0_4px_12px_rgba(46,124,246,0.8)]" viewBox="0 0 32 32" fill="none">
                   <path
                     d="M26.4 8.7C25.8 5.8 23.3 4 19.8 4H9.5C8.8 4 8.2 4.5 8.1 5.2L4.5 28c-.1.6.4 1.1 1 1.1h5.8c.7 0 1.3-.5 1.4-1.2l1-6.5c.1-.7.7-1.2 1.4-1.2h2.7c5.2 0 9.3-2.1 10.5-8.2.5-2.7.2-4.8-1.9-4.3z"
                     fill="#3B82F6"
@@ -228,7 +228,7 @@ export default function DashboardPage() {
                 </svg>
               </div>
 
-              <div className="absolute -right-24 top-10 font-bold text-sm text-slate-200 tracking-tight leading-tight hidden xl:block">
+              <div className="absolute -right-20 sm:-right-24 top-8 sm:top-10 font-bold text-xs sm:text-sm text-slate-200 tracking-tight leading-tight hidden md:block">
                 <div>Smart AI.</div>
                 <div className="text-white">Your Control.</div>
               </div>
@@ -236,20 +236,20 @@ export default function DashboardPage() {
           </div>
         </section>
 
-        {/* STATS ROW (4 Equal Columns) */}
-        <section className="px-8 py-3">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* STATS ROW (2x2 on mobile, 4 across on laptops/desktops per design.md Section 7) */}
+        <section className="px-4 sm:px-6 lg:px-8 py-3">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {/* Card 1: Daily Spend Limit */}
-            <div className="surface-card p-4 flex flex-col justify-between relative overflow-hidden">
-              <div className="flex items-center space-x-3 mb-2">
-                <div className="w-8 h-8 rounded-xl bg-[#2E7CF6]/15 text-[#2E7CF6] flex items-center justify-center shrink-0">
-                  <ShoppingCart className="w-4 h-4" />
+            <div className="surface-card p-3.5 sm:p-4 flex flex-col justify-between relative overflow-hidden">
+              <div className="flex items-center space-x-2 sm:space-x-3 mb-2">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-[#2E7CF6]/15 text-[#2E7CF6] flex items-center justify-center shrink-0">
+                  <ShoppingCart className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </div>
-                <span className="text-xs text-[#94A3B8] font-medium">Daily Spend Limit</span>
+                <span className="text-[11px] sm:text-xs text-[#94A3B8] font-medium truncate">Daily Spend Limit</span>
               </div>
-              <div className="flex items-center justify-between mt-1">
-                <span className="text-xl font-bold text-white tracking-tight">₹{policy.dailySpendCap.toLocaleString('en-IN')}</span>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#22C55E]/15 text-[#22C55E] border border-[#22C55E]/20">
+              <div className="flex flex-wrap items-center justify-between gap-1 mt-1">
+                <span className="text-lg sm:text-xl font-bold text-white tracking-tight">₹{policy.dailySpendCap.toLocaleString('en-IN')}</span>
+                <span className="px-1.5 sm:px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-semibold bg-[#22C55E]/15 text-[#22C55E] border border-[#22C55E]/20">
                   Active
                 </span>
               </div>
@@ -263,15 +263,15 @@ export default function DashboardPage() {
             {/* Card 2: Allowed Categories */}
             <div
               onClick={() => setShowSettingsModal(true)}
-              className="surface-card surface-card-hover p-4 flex flex-col justify-between cursor-pointer relative overflow-hidden"
+              className="surface-card surface-card-hover p-3.5 sm:p-4 flex flex-col justify-between cursor-pointer relative overflow-hidden"
             >
-              <div className="flex items-center space-x-3 mb-2">
-                <div className="w-8 h-8 rounded-xl bg-[#2E7CF6]/15 text-[#2E7CF6] flex items-center justify-center shrink-0">
-                  <Tag className="w-4 h-4" />
+              <div className="flex items-center space-x-2 sm:space-x-3 mb-2">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-[#2E7CF6]/15 text-[#2E7CF6] flex items-center justify-center shrink-0">
+                  <Tag className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </div>
-                <span className="text-xs text-[#94A3B8] font-medium">Allowed Categories</span>
+                <span className="text-[11px] sm:text-xs text-[#94A3B8] font-medium truncate">Allowed Categories</span>
               </div>
-              <div className="flex items-center space-x-1 mt-1 text-sm font-bold text-white tracking-tight">
+              <div className="flex items-center space-x-1 mt-1 text-xs sm:text-sm font-bold text-white tracking-tight">
                 <span className="truncate">{policy.allowedCategory}</span>
                 <ChevronDown className="w-3.5 h-3.5 text-slate-400 shrink-0" />
               </div>
@@ -283,16 +283,16 @@ export default function DashboardPage() {
             </div>
 
             {/* Card 3: Policy Status */}
-            <div className="surface-card p-4 flex flex-col justify-between relative overflow-hidden">
-              <div className="flex items-center space-x-3 mb-2">
-                <div className="w-8 h-8 rounded-xl bg-[#22C55E]/15 text-[#22C55E] flex items-center justify-center shrink-0">
-                  <ShieldCheck className="w-4 h-4" />
+            <div className="surface-card p-3.5 sm:p-4 flex flex-col justify-between relative overflow-hidden">
+              <div className="flex items-center space-x-2 sm:space-x-3 mb-2">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-[#22C55E]/15 text-[#22C55E] flex items-center justify-center shrink-0">
+                  <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </div>
-                <span className="text-xs text-[#94A3B8] font-medium">Policy Status</span>
+                <span className="text-[11px] sm:text-xs text-[#94A3B8] font-medium truncate">Policy Status</span>
               </div>
               <div className="flex items-center space-x-1.5 mt-1">
-                <span className="text-sm font-bold text-white tracking-tight">All Systems Secure</span>
-                <span className="w-2 h-2 rounded-full bg-[#22C55E] inline-block animate-pulse"></span>
+                <span className="text-xs sm:text-sm font-bold text-white tracking-tight truncate">All Secure</span>
+                <span className="w-2 h-2 rounded-full bg-[#22C55E] inline-block animate-pulse shrink-0"></span>
               </div>
               <div className="mt-2 h-4 w-full opacity-60">
                 <svg className="w-full h-full" viewBox="0 0 100 20" preserveAspectRatio="none">
@@ -302,16 +302,16 @@ export default function DashboardPage() {
             </div>
 
             {/* Card 4: Total Transactions */}
-            <div className="surface-card p-4 flex flex-col justify-between relative overflow-hidden">
-              <div className="flex items-center space-x-3 mb-2">
-                <div className="w-8 h-8 rounded-xl bg-[#2E7CF6]/15 text-[#2E7CF6] flex items-center justify-center shrink-0">
-                  <BarChart3 className="w-4 h-4" />
+            <div className="surface-card p-3.5 sm:p-4 flex flex-col justify-between relative overflow-hidden">
+              <div className="flex items-center space-x-2 sm:space-x-3 mb-2">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-[#2E7CF6]/15 text-[#2E7CF6] flex items-center justify-center shrink-0">
+                  <BarChart3 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </div>
-                <span className="text-xs text-[#94A3B8] font-medium">Total Transactions</span>
+                <span className="text-[11px] sm:text-xs text-[#94A3B8] font-medium truncate">Transactions</span>
               </div>
               <div className="flex items-center space-x-2 mt-1">
-                <span className="text-xl font-bold text-white tracking-tight">{events.length || 12}</span>
-                <span className="text-xs font-semibold text-[#22C55E] flex items-center">
+                <span className="text-lg sm:text-xl font-bold text-white tracking-tight">{events.length || 12}</span>
+                <span className="text-[11px] sm:text-xs font-semibold text-[#22C55E] flex items-center shrink-0">
                   ↑ +20%
                 </span>
               </div>
@@ -324,11 +324,79 @@ export default function DashboardPage() {
           </div>
         </section>
 
-        {/* MAIN TWO-COLUMN SPLIT */}
-        <section className="px-8 py-4">
+        {/* TWO-COLUMN SECTION (Alert card first on mobile per design.md Section 7, side-by-side on lg) */}
+        <section className="px-4 sm:px-6 lg:px-8 py-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
-            {/* LEFT: LIVE ACTIVITY FEED */}
-            <div className="lg:col-span-7 surface-card p-5 space-y-4">
+            {/* HERO ATTACK CARD (order-1 on mobile so it displays first, order-2 on lg:col-span-5) */}
+            <div className="order-1 lg:order-2 lg:col-span-5 alert-card-danger rounded-2xl p-4 sm:p-5 relative overflow-hidden flex flex-col justify-between space-y-4">
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex items-start space-x-3">
+                  <div className="w-9 h-9 rounded-xl bg-[#EF4444]/20 border border-[#EF4444]/40 flex items-center justify-center text-[#EF4444] shrink-0">
+                    <ShieldAlert className="w-5 h-5 stroke-[2.2]" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-bold text-white tracking-tight">Attack Detected &amp; Blocked!</h3>
+                    <p className="text-xs text-[#94A3B8] mt-0.5">Suspicious instruction detected in product request.</p>
+                  </div>
+                </div>
+
+                <div className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-[#EF4444]/15 text-[#EF4444] border border-[#EF4444]/30 flex items-center space-x-1 shrink-0">
+                  <span>⚠</span>
+                  <span>High Risk</span>
+                </div>
+              </div>
+
+              {/* Product and Violation box (stacked on small mobile, side-by-side on sm+) */}
+              <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
+                <div className="sm:col-span-6 bg-black/30 border border-white/[0.08] rounded-xl p-3 space-y-1">
+                  <span className="text-[10px] uppercase font-semibold text-[#94A3B8] block">Attempted Product</span>
+                  <div className="flex items-center space-x-2 pt-1">
+                    <div className="w-7 h-7 rounded-lg bg-white/[0.06] flex items-center justify-center text-slate-300 shrink-0">
+                      💻
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-white leading-tight">MacBook Pro</div>
+                      <div className="text-[11px] font-semibold text-rose-300">₹2,49,990</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="sm:col-span-6 bg-black/30 border border-white/[0.08] rounded-xl p-3 space-y-1 text-xs">
+                  <span className="text-[10px] uppercase font-semibold text-[#94A3B8] block">Violation</span>
+                  <div className="space-y-1 pt-1">
+                    <div className="flex items-center space-x-1.5 text-rose-300 text-[11px] leading-tight">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#EF4444] shrink-0" />
+                      <span>Exceeds daily limit</span>
+                    </div>
+                    <div className="flex items-center space-x-1.5 text-rose-300 text-[11px] leading-tight">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#EF4444] shrink-0" />
+                      <span>Suspicious prompt injection</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-black/30 border border-white/[0.08] rounded-xl p-3 space-y-1">
+                <div className="flex items-center space-x-1.5 text-[#F5A623] text-xs font-semibold">
+                  <Zap className="w-3.5 h-3.5 fill-[#F5A623]" />
+                  <span>AI Explanation</span>
+                </div>
+                <p className="text-xs text-[#94A3B8] leading-relaxed">
+                  This request contained instructions to ignore policies and make unauthorized purchases. It has been blocked for your safety.
+                </p>
+              </div>
+
+              <button
+                onClick={() => setShowDetailsModal(true)}
+                className="w-full py-2.5 rounded-xl border border-[#EF4444]/60 hover:bg-[#EF4444]/15 text-white text-xs font-semibold flex items-center justify-center space-x-1.5 transition-all"
+              >
+                <span>View Details</span>
+                <span>→</span>
+              </button>
+            </div>
+
+            {/* LIVE ACTIVITY FEED (order-2 on mobile, order-1 on lg:col-span-7) */}
+            <div className="order-2 lg:order-1 lg:col-span-7 surface-card p-4 sm:p-5 space-y-4 w-full">
               <div className="flex items-center justify-between pb-2 border-b border-white/[0.08]">
                 <div className="flex items-center space-x-2.5">
                   <Activity className="w-4 h-4 text-[#2E7CF6]" />
@@ -397,86 +465,19 @@ export default function DashboardPage() {
                 })}
               </div>
             </div>
-
-            {/* RIGHT: HERO ATTACK DETECTED & BLOCKED CARD */}
-            <div className="lg:col-span-5 alert-card-danger rounded-2xl p-5 relative overflow-hidden flex flex-col justify-between space-y-4">
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex items-start space-x-3">
-                  <div className="w-9 h-9 rounded-xl bg-[#EF4444]/20 border border-[#EF4444]/40 flex items-center justify-center text-[#EF4444] shrink-0">
-                    <ShieldAlert className="w-5 h-5 stroke-[2.2]" />
-                  </div>
-                  <div>
-                    <h3 className="text-base font-bold text-white tracking-tight">Attack Detected & Blocked!</h3>
-                    <p className="text-xs text-[#94A3B8] mt-0.5">Suspicious instruction detected in product request.</p>
-                  </div>
-                </div>
-
-                <div className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-[#EF4444]/15 text-[#EF4444] border border-[#EF4444]/30 flex items-center space-x-1 shrink-0">
-                  <span>⚠</span>
-                  <span>High Risk</span>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-12 gap-3 items-center">
-                <div className="col-span-6 bg-black/30 border border-white/[0.08] rounded-xl p-3 space-y-1">
-                  <span className="text-[10px] uppercase font-semibold text-[#94A3B8] block">Attempted Product</span>
-                  <div className="flex items-center space-x-2 pt-1">
-                    <div className="w-7 h-7 rounded-lg bg-white/[0.06] flex items-center justify-center text-slate-300 shrink-0">
-                      💻
-                    </div>
-                    <div>
-                      <div className="text-xs font-bold text-white leading-tight">MacBook Pro</div>
-                      <div className="text-[11px] font-semibold text-rose-300">₹2,49,990</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-span-6 bg-black/30 border border-white/[0.08] rounded-xl p-3 space-y-1 text-xs">
-                  <span className="text-[10px] uppercase font-semibold text-[#94A3B8] block">Violation</span>
-                  <div className="space-y-1 pt-1">
-                    <div className="flex items-center space-x-1.5 text-rose-300 text-[11px] leading-tight">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#EF4444] shrink-0" />
-                      <span>Exceeds daily limit</span>
-                    </div>
-                    <div className="flex items-center space-x-1.5 text-rose-300 text-[11px] leading-tight">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#EF4444] shrink-0" />
-                      <span>Suspicious prompt injection</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-black/30 border border-white/[0.08] rounded-xl p-3 space-y-1">
-                <div className="flex items-center space-x-1.5 text-[#F5A623] text-xs font-semibold">
-                  <Zap className="w-3.5 h-3.5 fill-[#F5A623]" />
-                  <span>AI Explanation</span>
-                </div>
-                <p className="text-xs text-[#94A3B8] leading-relaxed">
-                  This request contained instructions to ignore policies and make unauthorized purchases. It has been blocked for your safety.
-                </p>
-              </div>
-
-              <button
-                onClick={() => setShowDetailsModal(true)}
-                className="w-full py-2.5 rounded-xl border border-[#EF4444]/60 hover:bg-[#EF4444]/15 text-white text-xs font-semibold flex items-center justify-center space-x-1.5 transition-all"
-              >
-                <span>View Details</span>
-                <span>→</span>
-              </button>
-            </div>
           </div>
         </section>
 
         {/* BOTTOM TRUST STRIP */}
-        <section className="px-8 pb-8 pt-2 mt-auto">
+        <section className="px-4 sm:px-6 lg:px-8 pb-8 pt-2 mt-auto">
           <TrustStrip />
         </section>
       </div>
 
-      {/* MODALS */}
+      {/* MODALS WITH RESPONSIVE MAX HEIGHT & SCROLL */}
       {showDemoModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fadeIn">
-          <div className="bg-[#0E1630] border border-white/[0.12] max-w-lg w-full rounded-2xl p-6 shadow-2xl relative space-y-5">
+          <div className="bg-[#0E1630] border border-white/[0.12] max-w-lg w-full max-h-[90vh] overflow-y-auto rounded-2xl p-5 sm:p-6 shadow-2xl relative space-y-5">
             <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
               <div className="flex items-center space-x-2.5">
                 <div className="w-8 h-8 rounded-lg bg-[#2E7CF6]/20 text-[#2E7CF6] flex items-center justify-center">
@@ -513,7 +514,7 @@ export default function DashboardPage() {
                     Wireless Optical Mouse (₹1,999) — Within ₹5,000 daily spend cap.
                   </div>
                 </div>
-                <Play className="w-3.5 h-3.5 text-emerald-400" />
+                <Play className="w-3.5 h-3.5 text-emerald-400 shrink-0 ml-2" />
               </button>
 
               <button
@@ -530,18 +531,18 @@ export default function DashboardPage() {
                     <span>Trigger Indirect Prompt Injection Attack</span>
                   </div>
                   <div className="text-xs text-slate-300 mt-1">
-                    Poisoned listing instructs agent to buy MacBook Pro (₹2,49,990) & share account credentials.
+                    Poisoned listing instructs agent to buy MacBook Pro (₹2,49,990) &amp; share account credentials.
                   </div>
                 </div>
-                <Play className="w-3.5 h-3.5 text-rose-400" />
+                <Play className="w-3.5 h-3.5 text-rose-400 shrink-0 ml-2" />
               </button>
             </div>
 
-            <div className="pt-2 border-t border-white/[0.08] flex items-center justify-between text-xs">
+            <div className="pt-2 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
               <span className="text-[#94A3B8]">Emergency Safety Pause (Kill Switch):</span>
               <button
                 onClick={toggleKillSwitch}
-                className={`px-3 py-1.5 rounded-lg font-bold text-xs transition-all ${
+                className={`px-3 py-1.5 rounded-lg font-bold text-xs transition-all self-start sm:self-auto ${
                   policy.killSwitchActive
                     ? 'bg-rose-600 text-white animate-pulse'
                     : 'bg-white/[0.08] text-slate-300 hover:text-white'
@@ -556,7 +557,7 @@ export default function DashboardPage() {
 
       {showDetailsModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fadeIn">
-          <div className="bg-[#0E1630] border border-[#EF4444]/40 max-w-lg w-full rounded-2xl p-6 shadow-2xl relative space-y-4">
+          <div className="bg-[#0E1630] border border-[#EF4444]/40 max-w-lg w-full max-h-[90vh] overflow-y-auto rounded-2xl p-5 sm:p-6 shadow-2xl relative space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
               <div className="flex items-center space-x-2.5">
                 <div className="w-8 h-8 rounded-lg bg-[#EF4444]/20 text-[#EF4444] flex items-center justify-center">
@@ -564,7 +565,7 @@ export default function DashboardPage() {
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-white">Security Incident Details</h3>
-                  <p className="text-xs text-[#94A3B8]">Raw audit trail & extracted prompt injection payload</p>
+                  <p className="text-xs text-[#94A3B8]">Raw audit trail &amp; extracted prompt injection payload</p>
                 </div>
               </div>
               <button
@@ -633,14 +634,14 @@ export default function DashboardPage() {
 
       {showSettingsModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fadeIn">
-          <div className="bg-[#0E1630] border border-white/[0.12] max-w-lg w-full rounded-2xl p-6 shadow-2xl relative space-y-4">
+          <div className="bg-[#0E1630] border border-white/[0.12] max-w-lg w-full max-h-[90vh] overflow-y-auto rounded-2xl p-5 sm:p-6 shadow-2xl relative space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
               <div className="flex items-center space-x-2.5">
                 <div className="w-8 h-8 rounded-lg bg-[#2E7CF6]/20 text-[#2E7CF6] flex items-center justify-center">
                   <Sliders className="w-4 h-4 text-[#2E7CF6]" />
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-white">Spend & Category Policies</h3>
+                  <h3 className="text-base font-bold text-white">Spend &amp; Category Policies</h3>
                   <p className="text-xs text-[#94A3B8]">Enforced deterministically before PayPal tools execute</p>
                 </div>
               </div>

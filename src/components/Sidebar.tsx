@@ -37,11 +37,11 @@ export default function Sidebar() {
   }, [mobileMenuOpen]);
 
   const navItems = [
-    { label: 'Dashboard', href: '/', icon: Home },
-    { label: 'Settings', href: '/settings', icon: Settings },
-    { label: 'Policies', href: '/policies', icon: Shield },
-    { label: 'Activity Logs', href: '/activity', icon: BarChart3 },
-    { label: 'About', href: '/about', icon: Info },
+    { step: '01', label: 'Policies', href: '/policies', icon: Shield, subtitle: 'Guardrails' },
+    { step: '02', label: 'Live Console', href: '/', icon: Home, subtitle: 'Agent & Gate' },
+    { step: '03', label: 'Activity Logs', href: '/activity', icon: BarChart3, subtitle: 'Audit Trail' },
+    { step: '04', label: 'Settings', href: '/settings', icon: Settings, subtitle: 'Configuration' },
+    { step: '05', label: 'About', href: '/about', icon: Info, subtitle: 'Architecture' },
   ];
 
   return (
@@ -119,14 +119,23 @@ export default function Sidebar() {
                       key={item.href}
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                      className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                         isActive
                           ? 'bg-[#2E7CF6] text-white shadow-lg shadow-[#2E7CF6]/25'
                           : 'text-[#94A3B8] hover:text-white hover:bg-white/[0.04]'
                       }`}
                     >
-                      <Icon className="w-4 h-4" />
-                      <span>{item.label}</span>
+                      <div className="flex items-center space-x-3">
+                        <Icon className="w-4 h-4" />
+                        <span>{item.label}</span>
+                      </div>
+                      <span
+                        className={`text-[10px] font-mono px-2 py-0.5 rounded font-bold ${
+                          isActive ? 'bg-white/20 text-white' : 'bg-white/[0.05] text-slate-400'
+                        }`}
+                      >
+                        STEP {item.step}
+                      </span>
                     </Link>
                   );
                 })}
@@ -187,14 +196,23 @@ export default function Sidebar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${
                     isActive
                       ? 'bg-[#2E7CF6] text-white shadow-lg shadow-[#2E7CF6]/25'
                       : 'text-[#94A3B8] hover:text-white hover:bg-white/[0.04]'
                   }`}
                 >
-                  <Icon className="w-4 h-4" />
-                  <span>{item.label}</span>
+                  <div className="flex items-center space-x-3">
+                    <Icon className="w-4 h-4 shrink-0" />
+                    <span>{item.label}</span>
+                  </div>
+                  <span
+                    className={`text-[10px] font-mono px-1.5 py-0.5 rounded font-bold ${
+                      isActive ? 'bg-white/20 text-white' : 'bg-white/[0.05] text-slate-400'
+                    }`}
+                  >
+                    {item.step}
+                  </span>
                 </Link>
               );
             })}

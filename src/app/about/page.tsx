@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import Sidebar from '@/components/Sidebar';
 import TopBar from '@/components/TopBar';
 import TrustStrip from '@/components/TrustStrip';
@@ -25,6 +26,20 @@ export default function AboutPage() {
         <TopBar />
 
         <main className="px-4 sm:px-6 lg:px-8 py-6 max-w-5xl space-y-6 w-full">
+          {/* LINEAR WORKFLOW PROGRESS BAR */}
+          <div className="bg-[#111A38] border border-white/[0.08] rounded-xl px-4 py-2.5 flex items-center justify-between text-xs">
+            <div className="flex items-center space-x-2">
+              <span className="px-2 py-0.5 rounded bg-[#2E7CF6] text-white font-mono text-[10px] font-bold">
+                STEP 05 OF 05
+              </span>
+              <span className="text-white font-semibold">Mission Architecture &amp; Security Mapping</span>
+            </div>
+            <div className="text-[#94A3B8] hidden sm:flex items-center space-x-1.5 text-[11px]">
+              <span>Workflow:</span>
+              <span className="text-emerald-400 font-medium">Complete Cycle ✓</span>
+            </div>
+          </div>
+
           {/* Header */}
           <div className="space-y-1">
             <div className="flex items-center space-x-2 text-xs font-semibold text-[#2E7CF6] uppercase tracking-wider">
@@ -125,6 +140,36 @@ export default function AboutPage() {
                 <ShieldCheck className="w-4 h-4 shrink-0" />
                 <span>Open Source under MIT License</span>
               </div>
+            </div>
+          </div>
+
+          {/* LINEAR WORKFLOW RESTART CALLOUT */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-blue-950/40 via-[#0E1630] to-blue-950/20 border border-[#2E7CF6]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <div className="text-xs font-bold text-white flex items-center space-x-2">
+                <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-mono text-[10px] font-bold">
+                  JOURNEY COMPLETE
+                </span>
+                <span>Ready to Execute More Procurement Tests?</span>
+              </div>
+              <p className="text-xs text-[#94A3B8]">
+                Cycle back to Step 01 to update policy limits or launch a new live simulation in Step 02.
+              </p>
+            </div>
+            <div className="flex items-center space-x-2.5">
+              <Link
+                href="/policies"
+                className="px-4 py-2 rounded-xl border border-white/[0.1] text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/[0.04] transition-all"
+              >
+                <span>Step 01: Policies</span>
+              </Link>
+              <Link
+                href="/"
+                className="px-5 py-2 rounded-xl bg-[#2E7CF6] hover:bg-[#1D63D8] text-white text-xs font-semibold flex items-center space-x-1.5 transition-all shadow-lg shadow-[#2E7CF6]/25"
+              >
+                <span>Step 02: Live Console</span>
+                <span>→</span>
+              </Link>
             </div>
           </div>
 

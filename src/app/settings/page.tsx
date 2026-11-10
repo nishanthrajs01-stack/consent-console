@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import Sidebar from '@/components/Sidebar';
 import TopBar from '@/components/TopBar';
 import TrustStrip from '@/components/TrustStrip';
@@ -74,6 +75,20 @@ export default function SettingsPage() {
         <TopBar />
 
         <main className="px-4 sm:px-6 lg:px-8 py-6 max-w-5xl space-y-6 w-full">
+          {/* LINEAR WORKFLOW PROGRESS BAR */}
+          <div className="bg-[#111A38] border border-white/[0.08] rounded-xl px-4 py-2.5 flex items-center justify-between text-xs">
+            <div className="flex items-center space-x-2">
+              <span className="px-2 py-0.5 rounded bg-[#2E7CF6] text-white font-mono text-[10px] font-bold">
+                STEP 04 OF 05
+              </span>
+              <span className="text-white font-semibold">System Settings &amp; Sandbox Controls</span>
+            </div>
+            <div className="text-[#94A3B8] hidden sm:flex items-center space-x-1.5 text-[11px]">
+              <span>Next in Pipeline:</span>
+              <span className="text-white font-medium">05. Architecture &amp; About →</span>
+            </div>
+          </div>
+
           {/* Header */}
           <div className="space-y-1">
             <div className="flex items-center space-x-2 text-xs font-semibold text-[#2E7CF6] uppercase tracking-wider">
@@ -262,6 +277,28 @@ export default function SettingsPage() {
               </div>
             </div>
           </form>
+
+          {/* LINEAR NEXT STEP CALLOUT */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-blue-950/40 via-[#0E1630] to-blue-950/20 border border-[#2E7CF6]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <div className="text-xs font-bold text-white flex items-center space-x-2">
+                <span className="px-2 py-0.5 rounded bg-[#2E7CF6]/20 text-[#2E7CF6] font-mono text-[10px] font-bold">
+                  STEP 04 COMPLETE
+                </span>
+                <span>System Parameters &amp; Sandbox Tuned</span>
+              </div>
+              <p className="text-xs text-[#94A3B8]">
+                Read the architectural mission statement, OWASP LLM01/03 security mapping, and hackathon specs.
+              </p>
+            </div>
+            <Link
+              href="/about"
+              className="px-5 py-2.5 rounded-xl bg-[#2E7CF6] hover:bg-[#1D63D8] text-white text-xs font-semibold flex items-center justify-center space-x-1.5 transition-all shrink-0 shadow-lg shadow-[#2E7CF6]/25"
+            >
+              <span>Proceed to Step 05: Architecture</span>
+              <span>→</span>
+            </Link>
+          </div>
 
           <div className="pt-4">
             <TrustStrip />
